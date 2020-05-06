@@ -1,5 +1,11 @@
 #!/bin/bash
 
+##
+#
+# prepares files for the shields script in bin
+#
+##
+
 echo "Which host-list set do you want to include? (all | base | clear )"
 read WHICH_HOSTS
 
