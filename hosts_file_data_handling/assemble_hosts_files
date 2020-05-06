@@ -12,7 +12,7 @@ read WHICH_HOSTS
 FILES_TO_MERGE="header.txt"
 DESTINATION_FOLDER="ready"
 SOURCE_FOLDER="more"
-DESTINATION_FILE="$DESTINATION_FOLDER/header_only.txt"
+DESTINATION_FILE="$DESTINATION_FOLDER/what_happened.txt"
 
 if [ "$WHICH_HOSTS" = "all" ]; then
     echo "Assembling all host files..."
