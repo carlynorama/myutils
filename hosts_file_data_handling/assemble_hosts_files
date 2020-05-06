@@ -1,0 +1,36 @@
+#!/bin/bash
+
+echo "Which host-list set do you want to include? (all | base | clear )"
+read WHICH_HOSTS
+
+FILES_TO_MERGE="header.txt"
+DESTINATION_FOLDER="ready"
+SOURCE_FOLDER="more"
+DESTINATION_FILE="$DESTINATION_FOLDER/header_only.txt"
+
+if [ "$WHICH_HOSTS" = "all" ]; then
+    echo "Assembling all host files..."
+    DESTINATION_FILE="$DESTINATION_FOLDER/$WHICH_HOSTS.txt"
+    FILES_TO_MERGE+=" $SOURCE_FOLDER/*"
+    MESSAGE="All files merged."
+elif [ "$WHICH_HOSTS" = "base" ]; then
+    echo "Getting just the usual suspects..."
+    DESTINATION_FILE="$DESTINATION_FOLDER/$WHICH_HOSTS.txt"
+    FILES_TO_MERGE+=" $SOURCE_FOLDER/base.txt"
+    MESSAGE="Base files merged."
+elif [ "$WHICH_HOSTS" = "clear" ]; then
+      echo "Getting just the usual suspects..."
+      DESTINATION_FILE="$DESTINATION_FOLDER/$WHICH_HOSTS.txt"
+      FILES_TO_MERGE="header.txt"
+      MESSAGE="Reverted to system defaults only."
+  else
+    echo "I didn't understand. Try again."
+    exit 1
+fi
+
+
+cat $FILES_TO_MERGE > $DESTINATION_FILE
+
+sudo chown root:wheel $DESTINATION_FILE
+sudo chmod 644 $DESTINATION_FILE
+echo "$DESTINATION_FILE Created and assigned to root."
