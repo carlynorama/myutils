@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#echo "arg1: $1"
+
+echo Which file do you want to push to hosts?
+read WHICH_FILE
+
+SOURCE_FOLDER="ready"
+FILE_FULL_PATH="$SOURCE_FOLDER/$WHICH_FILE.txt"
+
+printf "\n\nThis file?\n\n"
+
+cat $FILE_FULL_PATH || { echo " cat command failed, make sure proper hosts file has been assembled."; exit 1; }
+
+printf "\nAre you sure (Y | N)?"
+read CONFIRM
+
+if [ "$CONFIRM" = "yes" ] || [ "$CONFIRM" = "Y" ]; then
+    sudo cp $FILE_FULL_PATH /etc/hosts
+    echo "Updated hosts file."
+elif [ "$CONFIRM" = "no" ] || [ "$CONFIRM" = "N" ]; then
+    echo "No change."
+else
+    echo "I didn't understand. Try again."
+fi
+
+echo "Please confirm by viewing hosts file: cat /etc/hosts"
