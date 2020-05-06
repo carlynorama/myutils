@@ -1,6 +1,12 @@
 #!/bin/bash
 
-ERROR_OUT_MSG="I didn't understand. Try again. (up | down | clear)"
+##
+#
+# swaps in prepared files for /etc/hosts file
+#
+##
+
+ERROR_OUT_MSG="I didn't understand. Try again. (up | down | offline)"
 
 if [ $# -eq 0 ]
   then
@@ -19,7 +25,7 @@ elif [ "$SHIELD_SETTING" = "down" ] || [ "$CONFIRM" = "N" ]; then
     WHICH_FILE="$HOME/$BASE_DIR/base.txt"
     MESSAGE_START="Shields being set to normal..."
     MESSAGE_END="Shields at neutral settings..."
-elif [ "$SHIELD_SETTING" = "clear" ]; then
+elif [ "$SHIELD_SETTING" = "offline" ]; then
     WHICH_FILE="$HOME/$BASE_DIR/clear.txt"
     MESSAGE_START="Shields power down..."
     MESSAGE_END="Shields off"
