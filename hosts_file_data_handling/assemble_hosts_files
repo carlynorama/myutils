@@ -27,7 +27,9 @@ elif [ "$WHICH_HOSTS" = "base" ]; then
 elif [ "$WHICH_HOSTS" = "clear" ]; then
       echo "Getting just the usual suspects..."
       DESTINATION_FILE="$DESTINATION_FOLDER/$WHICH_HOSTS.txt"
-      FILES_TO_MERGE="header.txt"
+      # $FILES_TO_MERGE should equal "header.txt" alone
+      # nothing to add
+      FILES_TO_MERGE+=""
       MESSAGE="Reverted to system defaults only."
   else
     echo "I didn't understand. Try again."
