@@ -8,14 +8,17 @@
 
 ERROR_OUT_MSG="I didn't understand. Try again. (up | down | offline)"
 
+# If nothing specified, bounce out of the script.
 if [ $# -eq 0 ]
   then
     echo $ERROR_OUT_MSG
     exit 1
 fi
 
+# Get the parameter
 SHIELD_SETTING=$1
-BASE_DIR="Developer/myutils/hosts_file_data_handling/"
+#Where do the files I'm looking for live
+BASE_DIR="Developer/myutils/hosts_file_data_handling/ready"
 
 if [ "$SHIELD_SETTING" = "up" ]; then
     WHICH_FILE="$HOME/$BASE_DIR/all.txt"
@@ -37,12 +40,14 @@ fi
 
 say -v Fiona $MESSAGE_START
 
+#Make sure the file exists and is what you want
 printf "\n\nThis file?\n\n"
 cat $WHICH_FILE || { echo " cat command failed, make sure proper hosts file has been assembled."; exit 1; }
 
 printf "\nAre you sure (Y | N)?"
 read CONFIRM
 
+# If confimed, make swap, otherwise do nothing and send message.
 if [ "$CONFIRM" = "yes" ] || [ "$CONFIRM" = "Y" ]; then
     sudo cp $WHICH_FILE /etc/hosts
     echo "Updated hosts file."
@@ -51,6 +56,7 @@ elif [ "$CONFIRM" = "no" ] || [ "$CONFIRM" = "N" ]; then
     echo "No change."
 else
     echo "I didn't understand. Try again from the top."
+    exit 1
 fi
 
 echo "Please confirm by viewing hosts file: cat /etc/hosts"
