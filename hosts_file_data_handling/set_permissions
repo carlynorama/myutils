@@ -1,0 +1,18 @@
+#!/bin/bash
+
+##
+#
+# fast way to get the permissions shifted for
+# the folder/files that root should own. 
+#
+##
+
+DIRECTORY="ready"
+echo updating permissions on $DIRECTORY directory
+
+sudo chown root:wheel $DIRECTORY
+sudo find $DIRECTORY -type f -exec chown root:wheel {} \;
+sudo find $DIRECTORY -type f -exec chmod 644 {} \;
+
+ls -al $DIRECTORY
+#echo "Updated permissions."
