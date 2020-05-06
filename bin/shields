@@ -1,0 +1,50 @@
+#!/bin/bash
+
+ERROR_OUT_MSG="I didn't understand. Try again. (up | down | clear)"
+
+if [ $# -eq 0 ]
+  then
+    echo $ERROR_OUT_MSG
+    exit 1
+fi
+
+SHIELD_SETTING=$1
+BASE_DIR="Developer/myutils/hosts_file_data_handling/"
+
+if [ "$SHIELD_SETTING" = "up" ]; then
+    WHICH_FILE="$HOME/$BASE_DIR/$SHIELD_SETTING.txt"
+    MESSAGE_START="Engaging shields to maximum..."
+    MESSAGE_END="Shields at full power..."
+elif [ "$SHIELD_SETTING" = "down" ] || [ "$CONFIRM" = "N" ]; then
+    WHICH_FILE="$HOME/$BASE_DIR/$SHIELD_SETTING.txt"
+    MESSAGE_START="Shields being set to normal..."
+    MESSAGE_END="Shields at neutral settings..."
+elif [ "$SHIELD_SETTING" = "clear" ]; then
+    WHICH_FILE="$HOME/$BASE_DIR/$SHIELD_SETTING.txt"
+    MESSAGE_START="Shields power down..."
+    MESSAGE_END="Shields off"
+else
+    echo $ERROR_OUT_MSG
+    exit 1
+fi
+
+
+say -v Fiona $MESSAGE_START
+
+printf "\n\nThis file?\n\n"
+cat $WHICH_FILE || { echo " cat command failed, make sure proper hosts file has been assembled."; exit 1; }
+
+printf "\nAre you sure (Y | N)?"
+read CONFIRM
+
+if [ "$CONFIRM" = "yes" ] || [ "$CONFIRM" = "Y" ]; then
+    sudo cp $WHICH_FILE /etc/hosts
+    echo "Updated hosts file."
+    say -v Fiona $MESSAGE_END
+elif [ "$CONFIRM" = "no" ] || [ "$CONFIRM" = "N" ]; then
+    echo "No change."
+else
+    echo "I didn't understand. Try again from the top."
+fi
+
+echo "Please confirm by viewing hosts file: cat /etc/hosts"
