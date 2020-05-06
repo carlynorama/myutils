@@ -1,0 +1,9 @@
+##
+#
+# Not every moment needs the news
+#
+##
+127.0.0.1       www.nytimes.com
+127.0.0.1       nytimes.com
+127.0.0.1       www.washingtonpost.com
+127.0.0.1       washingtonpost.com
