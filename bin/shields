@@ -12,15 +12,15 @@ SHIELD_SETTING=$1
 BASE_DIR="Developer/myutils/hosts_file_data_handling/"
 
 if [ "$SHIELD_SETTING" = "up" ]; then
-    WHICH_FILE="$HOME/$BASE_DIR/$SHIELD_SETTING.txt"
+    WHICH_FILE="$HOME/$BASE_DIR/all.txt"
     MESSAGE_START="Engaging shields to maximum..."
     MESSAGE_END="Shields at full power..."
 elif [ "$SHIELD_SETTING" = "down" ] || [ "$CONFIRM" = "N" ]; then
-    WHICH_FILE="$HOME/$BASE_DIR/$SHIELD_SETTING.txt"
+    WHICH_FILE="$HOME/$BASE_DIR/base.txt"
     MESSAGE_START="Shields being set to normal..."
     MESSAGE_END="Shields at neutral settings..."
 elif [ "$SHIELD_SETTING" = "clear" ]; then
-    WHICH_FILE="$HOME/$BASE_DIR/$SHIELD_SETTING.txt"
+    WHICH_FILE="$HOME/$BASE_DIR/clear.txt"
     MESSAGE_START="Shields power down..."
     MESSAGE_END="Shields off"
 else
