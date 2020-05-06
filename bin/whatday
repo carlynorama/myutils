@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+#imports go here
+import datetime
+
+#functions go here
+
+def printDay():
+  d = datetime.datetime.now()
+  #print(d.strftime("%A %d %B %Y"))
+  print(d.strftime("%A"))
+
+#make it run
+if __name__ == "__main__":
+    printDay()
