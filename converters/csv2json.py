@@ -4,11 +4,7 @@
 import csv
 import json
 
-csvFileInput = 'test_plant_export_numb1.csv'
-primaryKey = 'Classification ID'
-jsonFileInput = 'test_plant_export.json'
-
-def convert(csvFilePath, jsonFilePath):
+def convert(csvFilePath, jsonFilePath, primaryKey):
 #read csv file and add to data
     data = {}
     with open(csvFilePath) as csvFile:
@@ -24,6 +20,9 @@ def convert(csvFilePath, jsonFilePath):
 
 #make it run
 if __name__ == "__main__":
-    convert(csvFileInput, jsonFileInput)
+    csvFileInput = input ("File to convert: ")#'test_plant_export_numb1.csv'
+    primaryKey = input ("ID: ")#'Classification ID'
+    jsonFileInput = input ("File to save: ")#'test_plant_export.json'
+    convert(csvFileInput, jsonFileInput, primaryKey)
 
 ##------------------------------------------------- RESOURCES
