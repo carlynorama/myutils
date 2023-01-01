@@ -1,0 +1,12 @@
+# Japan
+* Tokyo
+* Osaka
+* Nagoya
+# France
+* Paris
+* Marseille
+* Lyon
+# Germany
+* Berlin
+* Hamburg
+* Munich
